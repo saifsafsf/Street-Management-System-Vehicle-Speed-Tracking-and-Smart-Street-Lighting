@@ -10,11 +10,9 @@ def generate(num_of_observations: int, save=False, filepath='data/street_data.cs
     ----------
     num_of_observations : int
         number of rows required to simulate the use case
-    
     save : bool
         flag to show if data sould be returned or saved as a .csv file, optional
         (default False)
-    
     filepath : str
         path to the file to store the generated data, optional
         (default "data/street_data.csv")
