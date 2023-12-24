@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 np.random.seed(42)
 
-def generate(num_of_observations: int) -> pd.DataFrame:
+def generate(num_of_observations: int, save=False, filepath='data/street_data.csv') -> pd.DataFrame:
     '''
     Simulates street light & speed detection system by generating specified number of rows of data
 
@@ -10,10 +10,18 @@ def generate(num_of_observations: int) -> pd.DataFrame:
     ----------
     num_of_observations : int
         number of rows required to simulate the use case
+    
+    save : bool
+        flag to show if data sould be returned or saved as a .csv file, optional
+        (default False)
+    
+    filepath : str
+        path to the file to store the generated data, optional
+        (default "data/street_data.csv")
 
     Returns
     -------
-    pd.DataFrame
+    pd.DataFrame or None (if save=True)
         separate column for each street light, (0 means off, 1 means on)
         speed column for detected speed (km/h)
         timestamp column
@@ -26,7 +34,7 @@ def generate(num_of_observations: int) -> pd.DataFrame:
 
     # dataframe showing all street lights off (0 default value)
     df = pd.DataFrame(np.zeros((num_of_observations, 7)), columns=[f'lights_{i}' for i in range(1, 8)]).astype(int)
-
+    df.to_csv()
     # generating random speed detections (33% empty road, 13.3% overspeeding cars, 53.7% normal speed cars)
     df['speed'] = np.random.permutation(
         np.append(
@@ -79,6 +87,10 @@ def generate(num_of_observations: int) -> pd.DataFrame:
     imp_columns = df.columns[:-1]
     df = df[(df[imp_columns].shift() != df[imp_columns]).any(axis=1)].reset_index(drop=True)
 
+    if save:
+        df.to_csv(filepath, index=False)
+    else:
+        return df
 
 if __name__ == '__main__':
     street_data = generate(7200)
