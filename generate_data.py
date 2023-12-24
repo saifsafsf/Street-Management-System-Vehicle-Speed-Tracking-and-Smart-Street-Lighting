@@ -87,10 +87,12 @@ def generate(num_of_observations: int, save=False, filepath='data/street_data.cs
     imp_columns = df.columns[:-1]
     df = df[(df[imp_columns].shift() != df[imp_columns]).any(axis=1)].reset_index(drop=True)
 
+    # saving to disk or returning the data
     if save:
         df.to_csv(filepath, index=False)
     else:
         return df
 
+
 if __name__ == '__main__':
-    street_data = generate(7200)
+    generate(7200, save=True)
