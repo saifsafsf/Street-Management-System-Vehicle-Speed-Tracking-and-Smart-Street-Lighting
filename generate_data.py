@@ -27,7 +27,7 @@ def generate(num_of_observations: int, save=False, filepath='data/street_data.cs
         timestamp column
     '''
 
-    # numbers of different types of observations
+    # number of different types of observations
     empty_road = num_of_observations // 3
     over_speed_cars = (num_of_observations - empty_road) // 5
     normal_speed_cars = num_of_observations - empty_road - over_speed_cars
