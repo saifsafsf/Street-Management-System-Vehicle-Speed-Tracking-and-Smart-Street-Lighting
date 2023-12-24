@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 np.random.seed(42)
 
-def generate(num_of_observations):
+def generate(num_of_observations: int) -> pd.DataFrame:
     zero_cars_detected = num_of_observations // 3
     over_speed_cars = (num_of_observations - zero_cars_detected) // 5
     normal_speed_cars = over_speed_cars * 4
@@ -51,4 +51,6 @@ def generate(num_of_observations):
     imp_columns = df.columns[:-1]
     df = df[(df[imp_columns].shift() != df[imp_columns]).any(axis=1)].reset_index(drop=True)
 
-    
+
+if __name__ == '__main__':
+    street_data = generate(7200)
