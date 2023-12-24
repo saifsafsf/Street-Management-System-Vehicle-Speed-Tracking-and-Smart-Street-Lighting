@@ -34,7 +34,7 @@ def generate(num_of_observations: int, save=False, filepath='data/street_data.cs
 
     # dataframe showing all street lights off (0 default value)
     df = pd.DataFrame(np.zeros((num_of_observations, 7)), columns=[f'lights_{i}' for i in range(1, 8)]).astype(int)
-    df.to_csv()
+
     # generating random speed detections (33% empty road, 13.3% overspeeding cars, 53.7% normal speed cars)
     df['speed'] = np.random.permutation(
         np.append(
