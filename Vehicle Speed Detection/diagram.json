@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "author": "Syed Sheraz Hussain",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -76.8, "left": 43.24, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 45.3,
+      "left": 302.1,
+      "rotate": 90,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -77.2,
+      "left": -127.6,
+      "rotate": 270,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -77.2,
+      "left": -50.8,
+      "rotate": 270,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 33.6,
+      "left": -48.55,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 33.6,
+      "left": -125.35,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": -195.2,
+      "left": 168.8,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "bz1:1", "black", [ "h0" ] ],
+    [ "esp:2", "bz1:2", "yellow", [ "h0" ] ],
+    [ "btn2:1.l", "esp:GND.1", "black", [ "v0" ] ],
+    [ "btn1:1.l", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:34", "btn2:2.l", "green", [ "h0" ] ],
+    [ "btn1:2.l", "esp:35", "green", [ "v0" ] ],
+    [ "btn2:2.l", "r1:1", "red", [ "v0", "h-9.4" ] ],
+    [ "r1:2", "esp:5V", "red", [ "h0", "v46.8" ] ],
+    [ "btn1:2.l", "r2:1", "red", [ "v0", "h-9.4" ] ],
+    [ "r2:2", "esp:5V", "red", [ "h0", "v56.4" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "lcd1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "lcd1:SDA", "esp:21", "magenta", [ "h-9.6", "v144.2" ] ],
+    [ "lcd1:SCL", "esp:22", "cyan", [ "h-19.2", "v105.9" ] ]
+  ],
+  "dependencies": {}
+}
