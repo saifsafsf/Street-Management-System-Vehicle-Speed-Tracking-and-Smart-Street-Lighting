@@ -64,5 +64,6 @@ def lights_summary(filepath: str, num_of_observations=7200, save=False, save_pat
     else: 
         return lights_insights
 
+
 if __name__ == '__main__':
-    print(lights_summary('data/street_data.csv'))
+    lights_summary('data/street_data.csv', save=True)
