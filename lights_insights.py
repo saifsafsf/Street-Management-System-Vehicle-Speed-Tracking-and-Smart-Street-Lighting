@@ -4,7 +4,30 @@ from generate_data import generate
 import os
 
 def lights_summary(filepath: str, num_of_observations=7200, save=False, save_path='data/lights_insights.csv') -> pd.DataFrame:
-    
+    '''
+    Summarizes street lights data, the duration every light was on for
+
+    Parameters
+    ----------
+    filepath : str
+        filepath to previously generated data
+    num_of_observations : int
+        number of rows required to simulate the use case, required only if data is not found on ``filepath``
+        (default 7200)
+    save : bool
+        flag to show if data sould be returned or saved as a .csv file, optional
+        (default False)
+    filepath : str
+        path to the file to store the generated data, optional
+        (default "data/lights_insights.csv")
+
+    Returns
+    -------
+    pd.DataFrame
+        lights column to represent the lights number
+        hours column for the number of hours the corresponding light was on
+    '''
+
     if os.path.exists(filepath):
         street_data = pd.read_csv(filepath)
     else:
