@@ -28,26 +28,41 @@ def lights_summary(filepath: str, num_of_observations=7200, save=False, save_pat
         hours column for the number of hours the corresponding light was on
     '''
 
+    # if the data exists
     if os.path.exists(filepath):
         street_data = pd.read_csv(filepath)
+    
+    # else generate the data
     else:
         street_data = generate(num_of_observations)
 
+    # cleaning " UTC" from the timestamp
     street_data['time'] = pd.to_datetime(street_data['time'].str[:-4])
 
+    # for a dataframe-like structure
     lights_insights = defaultdict(list)
 
     for col in street_data.columns[:-2]:
+
+        # for each light, calculate the time it was on for
         light_data = street_data[[col, 'time']]
         light_data = light_data[(light_data[[col]].shift() != light_data[[col]]).any(axis=1)]
         total_time_on = light_data.diff()[light_data.diff()[col] == -1]['time'].sum()
+
+        # converting from seconds to hours
         total_hours = total_time_on.total_seconds() / 3600
+
+        # adding to the dataframe
         lights_insights['lights'].append(col)
         lights_insights['hours'].append(round(total_hours, 2))
     
     lights_insights = pd.DataFrame(dict(lights_insights))
 
+    # saving to disk or returning the data
     if save:
         lights_insights.to_csv(save_path, index=False)
     else: 
         return lights_insights
+
+if __name__ == '__main__':
+    print(lights_summary('data/street_data.csv'))
