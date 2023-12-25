@@ -23,7 +23,7 @@ def lights_summary(filepath: str, num_of_observations=7200, save=False, save_pat
 
     Returns
     -------
-    pd.DataFrame
+    pd.DataFrame or None (if save=True)
         lights column to represent the lights number
         hours column for the number of hours the corresponding light was on
     '''
