@@ -1,6 +1,7 @@
 #include <WiFi.h>
-#include "ThingSpeak.h"
 #include <LiquidCrystal_I2C.h>
+#include "ThingSpeak.h"
+
 LiquidCrystal_I2C LCD = LiquidCrystal_I2C(0x27, 20, 4);
 
 // Define WiFi credentials
@@ -9,8 +10,8 @@ char pass[] = "";                 // Network password
 WiFiClient client;
 
 // ThingSpeak channel details
-unsigned long channelNum = "YOUR CHANNEL NUM";               // Channel number taken from the cloud
-const char *API_Key = "YOUR API KEY";        // WriteAPI key of the cloud
+unsigned long channelNum = "Channel number";               // Channel number taken from the cloud
+const char *API_Key = "Write API Key";        // WriteAPI key of the cloud
 
 // Smart Street lighting
 // Pins for PIR sensors
@@ -28,7 +29,7 @@ const float RL10 = 50;
 // Pins for LEDs
 const int ledPin1 = 2;
 const int ledPin2 = 0;
-const int ledPin3 = 4;
+const int ledPin3 = 12;
 const int ledPin4 = 16;
 const int ledPin5 = 17;
 const int ledPin6 = 5;
@@ -51,7 +52,7 @@ bool ledStatus7 = false;
 
 void setup() {
   Serial.begin(115200);
-  Serial.print("\nSmart Streets System\n");
+  Serial.print("\nSmart Street Lighting System\n");
 
   // Set pin modes for street lighting
   pinMode(pirSensorPin1, INPUT);
@@ -143,11 +144,13 @@ void loop() {
   }
 
   // Control LEDs based on sensor values
-  if (lux > 300) {
+  if (lux > 100) {
     LCD.setCursor(6, 0);
     LCD.print("DAYTIME");
     LCD.setCursor(3, 2);
     LCD.print("[ Saving Mode ]");
+    LCD.setCursor(0, 3);
+    LCD.print("                  ");
     if (!motion1 && !motion2 && !motion3 && !motion4 && !motion5) {
       // Turn off all LEDs if no motion is detected
       digitalWrite(ledPin1, LOW);
@@ -182,10 +185,10 @@ void loop() {
       ledStatus7 = false;
     }
   }
-   else if (lux <= 300) {
+   else if (lux <= 100) {
     LCD.setCursor(6, 0);
-    LCD.print("NIGHT      ");
-    LCD.setCursor(0, 1);
+    LCD.print("  NIGHT      ");
+    LCD.setCursor(0, 3);
     LCD.print("Motion: ");
     LCD.print(motion1 ? " 1" : " 0");
     LCD.print(motion2 ? " 2" : " 0");
@@ -268,6 +271,7 @@ void loop() {
   ThingSpeak.setField(5, digitalRead(ledPin5));
   ThingSpeak.setField(6, digitalRead(ledPin6));
   ThingSpeak.setField(7, digitalRead(ledPin7));
+  ThingSpeak.setField(8, lux);
 
   // Write to the ThingSpeak channel
   int status = ThingSpeak.writeFields(channelNum, API_Key);
