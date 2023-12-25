@@ -45,7 +45,7 @@ def generate(num_of_observations: int, save=False, filepath='data/street_data.cs
     )
 
     # generating one row every 5 seconds, adding 'UTC' to copy ThingSpeak format
-    df['time'] = pd.date_range('2023-12-24 08:00:00', periods=num_of_observations, freq='5s').astype(str) + ' UTC'
+    df['time'] = pd.date_range('2023-12-24 20:00:00', periods=num_of_observations, freq='5s').astype(str) + ' UTC'
 
     # how car's speed affects lights turning on
     lights_dict = {
