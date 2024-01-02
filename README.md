@@ -9,3 +9,8 @@ This project presents a system, developed for over-speeding detection and alerti
 
 ### Dashboard
 ![dashboard](https://github.com/saifsafsf/Street-Management-System-Vehicle-Speed-Tracking-and-Smart-Street-Lighting/assets/73883918/348bbb14-daa9-4b47-87c7-b34e86eb5c4f)
+
+### How to Run
+- Upload simluation folders on Wokwi
+- Run Simulation
+- 
