@@ -12,5 +12,6 @@ This project presents a system, developed for over-speeding detection and alerti
 
 ### How to Run
 - Upload simluation folders on Wokwi
-- Run Simulation
-- 
+- Run simulation
+- Run generate_data.py (if data is not present in `./data` directory)
+- Run 
