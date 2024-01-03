@@ -12,6 +12,15 @@ This project presents a system, developed for over-speeding detection and alerti
 
 ### How to Run
 - Upload simluation folders on Wokwi
-- Run simulation
-- Run generate_data.py (if data is not present in `./data` directory)
-- Run 
+- Replace {{ API_KEY }} and {{ CHANNEL_NUM }} with your own API Key and Channel Number from ThingSpeak
+- Run simulations
+- Run `./scripts/generate_data.py` (if `./data/street_data.csv` does not exist)
+- Run `./scripts/lights_insights.py` (if `./data/lights_insights.csv` does not exist)
+- View `Street Mgmt System Dashboard using.pbix` Power BI
+
+### Future Work
+Data is generated using python scripts trying to simulate the situation. This can be replaced by:
+- Using simulations to send the data to ThingSpeak
+- Connecting Power BI directly to ThingSpeak using its API
+- Cleaning the data & extracting the insights in Power BI
+- Finally, visualizing the data in Power BI
