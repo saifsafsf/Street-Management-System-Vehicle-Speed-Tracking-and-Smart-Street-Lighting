@@ -10,7 +10,7 @@ char pass[] = "";                 // Network password
 WiFiClient client;
 
 // ThingSpeak channel details
-unsigned long channelNum = "{{ CHANNEL_NUM }}";               // Channel number taken from the cloud
+unsigned long channelNum = {{ CHANNEL_NUM }};               // Channel number taken from the cloud
 const char *API_Key = "{{ API_KEY }}";        // WriteAPI key of the cloud
 
 // Smart Street lighting
