@@ -12,7 +12,7 @@ This project presents a system, developed for over-speeding detection and alerti
 
 ### How to Run
 - Upload simluation folders on Wokwi
-- Replace `{{ API_KEY }}` and `{{ CHANNEL_NUM }}` with your own API Key and Channel Number from ThingSpeak
+- Replace `{{ API_KEY }}` and `{{ CHANNEL_NUM }}` in `./{{ SIMULATION_NAME }}/sketch.ino` with your credentials from ThingSpeak
 - Run simulations
 - Run `./scripts/generate_data.py` (if `./data/street_data.csv` does not exist)
 - Run `./scripts/lights_insights.py` (if `./data/lights_insights.csv` does not exist)
